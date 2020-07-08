@@ -8,7 +8,7 @@ export const Grid = styled.div`
   gap: 4rem;
   padding: 4rem;
   position: relative;
-  margin-bottom: 4rem;
+  margin: 4rem 0;
 
   > button {
     width: 200px;

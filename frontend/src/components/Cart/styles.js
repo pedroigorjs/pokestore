@@ -6,7 +6,6 @@ export const Grid = styled.div`
   padding: 4rem;
   border-left: 1px solid #ebebeb;
   border-bottom: 1px solid #ebebeb;
-  border-top: 1px solid #ebebeb;
   position: fixed;
   top: 84px;
   right: 0;

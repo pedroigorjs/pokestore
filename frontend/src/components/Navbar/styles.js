@@ -3,6 +3,10 @@ import styled from 'styled-components';
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: 2fr 9fr 2fr;
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  background-color: #fff;
 
   div {
     display: flex;
