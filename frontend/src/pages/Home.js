@@ -45,20 +45,20 @@ export default function Home() {
     setData(response);
   }
 
-  function handleSearch() {
-    if (searchValue.length > 0) {
-      const newPokemon = pokemon.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()));
-      setPokemon(newPokemon);
-    }
-  }
-
-  useCallback(
-    handleSearch(), [pokemon, searchValue],
-  );
+  useCallback();
 
   useEffect(() => {
     getPokemon();
-  }, []);
+
+    function handleSearch() {
+      if (searchValue.length > 0) {
+        const newPokemon = pokemon.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()));
+        console.log(newPokemon);
+      }
+    }
+
+    // handleSearch();
+  }, [searchValue, pokemon]);
 
   return (
     <>
