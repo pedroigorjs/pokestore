@@ -27,16 +27,16 @@ export default function Cards({ cart, clearCart }) {
   const [total, setTotal] = useState(0);
   const [orderStatus, setOrderStatus] = useState(false);
 
-  function getTotal() {
-    setTotal((cart.reduce((acc, crr) => acc + crr.price, 0)));
-  }
-
   function handleCompleteOrder() {
     setOrderStatus(true);
     clearCart();
   }
 
   useEffect(() => {
+    function getTotal() {
+      setTotal((cart.reduce((acc, crr) => acc + crr.price, 0)));
+    }
+
     getTotal();
   }, [cart]);
 
