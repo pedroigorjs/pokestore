@@ -5,7 +5,9 @@ import {
   Grid, SearchBar, SearchIcon, CartButton,
 } from './Navbar/styles';
 
-export default function Navbar({ brand, cartItems, isCartOpen }) {
+export default function Navbar({
+  brand, cartItems, isCartOpen, searchValue, setSearchValue,
+}) {
   return (
     <Grid>
       <div>
@@ -15,7 +17,7 @@ export default function Navbar({ brand, cartItems, isCartOpen }) {
         <SearchIcon>
           <Search color="#B2B2B2" size={28} />
         </SearchIcon>
-        <SearchBar type="text" placeholder="Pesquisar pokemon..." />
+        <SearchBar type="text" placeholder="Pesquisar pokemon..." value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
       </div>
       <div>
         <CartButton type="button" onClick={isCartOpen}>

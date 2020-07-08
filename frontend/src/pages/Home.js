@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import logo from '../logo.svg';
 import Navbar from '../components/Navbar';
@@ -13,6 +13,7 @@ export default function Home() {
   const [pokemon, setPokemon] = useState([]);
   const [cart, setCart] = useState([]);
   const [cartIsOpen, setCartIsOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
 
   async function getPokemon() {
     const { data: response } = await api.get('/pokemon');
@@ -44,13 +45,24 @@ export default function Home() {
     setData(response);
   }
 
+  useCallback();
+
   useEffect(() => {
     getPokemon();
-  }, []);
+
+    function handleSearch() {
+      if (searchValue.length > 0) {
+        const newPokemon = pokemon.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()));
+        console.log(newPokemon);
+      }
+    }
+
+    // handleSearch();
+  }, [searchValue, pokemon]);
 
   return (
     <>
-      <Navbar brand={logo} cartItems={cart.length} isCartOpen={isCartOpen} />
+      <Navbar brand={logo} cartItems={cart.length} isCartOpen={isCartOpen} searchValue={searchValue} setSearchValue={setSearchValue} />
       <Container>
         <Cards data={pokemon} handleAddToCart={handleAddToCart} nextPage={nextPage} />
         <Cart cart={cart} clearCart={clearCart} cartIsOpen={cartIsOpen} />
