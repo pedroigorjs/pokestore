@@ -56,11 +56,10 @@ export default function Home() {
         const newPokemon = pokemon.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()));
         console.log(newPokemon);
       }
-     */
     }
-
+    */
     // handleSearch();
-  }, [searchValue, pokemon]);
+  }, []);
 
   return (
     <>
