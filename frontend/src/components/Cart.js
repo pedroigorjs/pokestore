@@ -23,7 +23,7 @@ const IsOrderComplete = ({ setOrderStatus }) => (
   </OrderComplete>
 );
 
-export default function Cards({ cart, clearCart }) {
+export default function Cards({ cart, clearCart, cartIsOpen }) {
   const [total, setTotal] = useState(0);
   const [orderStatus, setOrderStatus] = useState(false);
 
@@ -41,7 +41,7 @@ export default function Cards({ cart, clearCart }) {
   }, [cart]);
 
   return (
-    <Grid>
+    <Grid isOpen={cartIsOpen}>
       { !orderStatus && (
         <>
           <header>

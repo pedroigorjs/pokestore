@@ -12,6 +12,7 @@ export default function Home() {
   const [data, setData] = useState([]);
   const [pokemon, setPokemon] = useState([]);
   const [cart, setCart] = useState([]);
+  const [cartIsOpen, setCartIsOpen] = useState(false);
 
   async function getPokemon() {
     const { data: response } = await api.get('/pokemon');
@@ -32,6 +33,10 @@ export default function Home() {
     setCart([]);
   }
 
+  function isCartOpen() {
+    setCartIsOpen((old) => !old);
+  }
+
   async function nextPage() {
     const { data: response } = await api.get(data.next);
 
@@ -45,10 +50,10 @@ export default function Home() {
 
   return (
     <>
-      <Navbar brand={logo} cartItems={cart.length} />
+      <Navbar brand={logo} cartItems={cart.length} isCartOpen={isCartOpen} />
       <Container>
         <Cards data={pokemon} handleAddToCart={handleAddToCart} nextPage={nextPage} />
-        <Cart cart={cart} clearCart={clearCart} />
+        <Cart cart={cart} clearCart={clearCart} cartIsOpen={cartIsOpen} />
       </Container>
     </>
   );

@@ -5,7 +5,7 @@ import {
   Grid, SearchBar, SearchIcon, CartButton,
 } from './Navbar/styles';
 
-export default function Navbar({ brand, cartItems }) {
+export default function Navbar({ brand, cartItems, isCartOpen }) {
   return (
     <Grid>
       <div>
@@ -18,7 +18,7 @@ export default function Navbar({ brand, cartItems }) {
         <SearchBar type="text" placeholder="Pesquisar pokemon..." />
       </div>
       <div>
-        <CartButton type="button">
+        <CartButton type="button" onClick={isCartOpen}>
           <ShoppingBag color="#313131" size={28} />
           Carrinho:
           {' '}

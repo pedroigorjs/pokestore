@@ -11,6 +11,7 @@ export const Grid = styled.div`
   top: 84px;
   right: 0;
   transition: all .2s ease-in;
+  display: ${(props) => (props.isOpen ? 'block' : 'none')};
 
   header {
     display: flex;
