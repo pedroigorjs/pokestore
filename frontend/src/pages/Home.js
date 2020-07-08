@@ -50,15 +50,15 @@ export default function Home() {
   useEffect(() => {
     getPokemon();
 
-    function handleSearch() {
-      if (searchValue.length > 0) {
-        const newPokemon = pokemon.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()));
-        console.log(newPokemon);
-      }
-    }
+    // function handleSearch() {
+    //   if (searchValue.length > 0) {
+    //     const newPokemon = pokemon.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()));
+    //     console.log(newPokemon);
+    //   }
+    // }
 
     // handleSearch();
-  }, [searchValue, pokemon]);
+  }, []);
 
   return (
     <>
