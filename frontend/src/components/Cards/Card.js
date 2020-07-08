@@ -56,7 +56,10 @@ export default function Card({ data, handleAddToCart }) {
       </StatList>
       <CardButton type="button" color="#FC4658" onClick={() => handleAddToCart({ ...pokemon, price: stats[0]?.base_stat * 10 })}>
         {convertToCurrency('pt-BR', stats[0]?.base_stat * 10)}
-        <PlusCircle color="#FFF" size={28} />
+        <div>
+          Adicionar ao Carrinho
+          <PlusCircle color="#FFF" size={28} />
+        </div>
       </CardButton>
     </Container>
   );

@@ -79,6 +79,16 @@ export const CardButton = styled.button`
   font-weight: 500;
   transition: background .2s ease-in;
 
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    svg {
+      margin-left: 1rem;
+    }
+  }
+
   &:hover {
     background-color: ${(props) => darken(0.05, props.color)}
   }
