@@ -7,6 +7,16 @@ export const Grid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 4rem;
   padding: 4rem;
+  position: relative;
+  margin-bottom: 4rem;
+
+  > button {
+    width: 200px;
+    position: absolute;
+    right: 4rem;
+    bottom: 0;
+    margin: 0 auto;
+  }
 `;
 
 export const Container = styled.div`
@@ -59,7 +69,7 @@ export const CardButton = styled.button`
   width: 100%;
   border: none;
   cursor: pointer;
-  background-color: #FC4658;
+  background-color: ${(props) => props.color};
   border-radius: 10px;
   display: flex;
   justify-content: space-around;
@@ -70,6 +80,6 @@ export const CardButton = styled.button`
   transition: background .2s ease-in;
 
   &:hover {
-    background-color: ${darken(0.05, '#FC4658')}
+    background-color: ${(props) => darken(0.05, props.color)}
   }
 `;

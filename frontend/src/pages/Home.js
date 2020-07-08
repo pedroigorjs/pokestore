@@ -9,13 +9,15 @@ import api from '../services/api';
 import { Container } from './Home/styles';
 
 export default function Home() {
+  const [data, setData] = useState([]);
   const [pokemon, setPokemon] = useState([]);
   const [cart, setCart] = useState([]);
 
   async function getPokemon() {
-    const { data: { results } } = await api.get('/pokemon');
+    const { data: response } = await api.get('/pokemon');
 
-    setPokemon(results);
+    setPokemon(response.results);
+    setData(response);
   }
 
   function handleAddToCart({ name, id, price }) {
@@ -30,15 +32,22 @@ export default function Home() {
     setCart([]);
   }
 
+  async function nextPage() {
+    const { data: response } = await api.get(data.next);
+
+    setPokemon([...pokemon, ...response.results]);
+    setData(response);
+  }
+
   useEffect(() => {
     getPokemon();
-  });
+  }, []);
 
   return (
     <>
       <Navbar brand={logo} cartItems={cart.length} />
       <Container>
-        <Cards data={pokemon} handleAddToCart={handleAddToCart} />
+        <Cards data={pokemon} handleAddToCart={handleAddToCart} nextPage={nextPage} />
         <Cart cart={cart} clearCart={clearCart} />
       </Container>
     </>
