@@ -6,7 +6,7 @@ import {
 } from './Navbar/styles';
 
 export default function Navbar({
-  brand, cartItems, isCartOpen, searchValue, setSearchValue,
+  brand, cartItems, isCartOpen, searchValue, handleSearch,
 }) {
   return (
     <Grid>
@@ -17,7 +17,7 @@ export default function Navbar({
         <SearchIcon>
           <Search color="#B2B2B2" size={28} />
         </SearchIcon>
-        <SearchBar type="text" placeholder="Pesquisar pokemon..." value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+        <SearchBar type="text" placeholder="Pesquisar pokemon..." value={searchValue} onChange={(e) => handleSearch(e.target.value)} />
       </div>
       <div>
         <CartButton type="button" onClick={isCartOpen}>

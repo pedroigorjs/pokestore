@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import logo from '../logo.svg';
 import Navbar from '../components/Navbar';
@@ -9,7 +9,7 @@ import api from '../services/api';
 import { Container } from './Home/styles';
 
 export default function Home() {
-  const [data, setData] = useState([]);
+  const [pokemonList, setPokemonList] = useState([]);
   const [pokemon, setPokemon] = useState([]);
   const [cart, setCart] = useState([]);
   const [cartIsOpen, setCartIsOpen] = useState(false);
@@ -19,7 +19,7 @@ export default function Home() {
     const { data: response } = await api.get('/pokemon');
 
     setPokemon(response.results);
-    setData(response);
+    setPokemonList(response);
   }
 
   function handleAddToCart({ name, id, price }) {
@@ -39,31 +39,29 @@ export default function Home() {
   }
 
   async function nextPage() {
-    const { data: response } = await api.get(data.next);
+    const { data: response } = await api.get(pokemonList.next);
 
     setPokemon([...pokemon, ...response.results]);
-    setData(response);
+    setPokemonList(response);
   }
 
-  useCallback();
+  async function handleSearch(value) {
+    setSearchValue(value);
+
+    const { data: { results } } = await api.get('/pokemon');
+
+    const newPokemon = results.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()));
+
+    setPokemon(newPokemon);
+  }
 
   useEffect(() => {
     getPokemon();
-
-    /*
-    function handleSearch() {
-      if (searchValue.length > 0) {
-        const newPokemon = pokemon.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()));
-        console.log(newPokemon);
-      }
-    }
-    */
-    // handleSearch();
   }, []);
 
   return (
     <>
-      <Navbar brand={logo} cartItems={cart.length} isCartOpen={isCartOpen} searchValue={searchValue} setSearchValue={setSearchValue} />
+      <Navbar brand={logo} cartItems={cart.length} isCartOpen={isCartOpen} searchValue={searchValue} handleSearch={handleSearch} />
       <Container>
         <Cards data={pokemon} handleAddToCart={handleAddToCart} nextPage={nextPage} />
         <Cart cart={cart} clearCart={clearCart} cartIsOpen={cartIsOpen} />
